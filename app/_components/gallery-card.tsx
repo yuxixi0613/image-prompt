@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Copy, Calendar, Tag, Eye } from "lucide-react";
+import { Copy, Calendar, Tag, Eye, ChevronDown, ChevronUp } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +30,7 @@ interface GalleryCardProps {
 
 export default function GalleryCard({ image, priority }: GalleryCardProps) {
   const [imgError, setImgError] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -52,6 +53,8 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
       }
     }
   };
+
+  const shouldTruncate = image.prompt.length > 120;
 
   return (
     <Dialog>
@@ -99,9 +102,33 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
         </CardHeader>
 
         <CardContent className="pb-3">
-          <p className="line-clamp-3 text-sm leading-relaxed text-card-foreground">
-            {image.prompt}
-          </p>
+          <div className="relative">
+            <p
+              className={`text-sm leading-relaxed text-card-foreground transition-all duration-300 ${
+                isExpanded ? "" : "line-clamp-3"
+              }`}
+            >
+              {image.prompt}
+            </p>
+            {shouldTruncate && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-1 flex items-center gap-0.5 text-xs text-primary hover:text-primary/80 transition-colors"
+              >
+                {isExpanded ? (
+                  <>
+                    <ChevronUp className="size-3" />
+                    收起
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="size-3" />
+                    展开
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </CardContent>
 
         <CardFooter className="flex flex-col gap-3 pt-0">
@@ -153,9 +180,20 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
         </div>
         <Separator />
         <div className="space-y-3">
-          <p className="text-sm leading-relaxed text-foreground">
-            {image.prompt}
-          </p>
+          <div className="flex items-start justify-between gap-4">
+            <p className="text-sm leading-relaxed text-foreground flex-1">
+              {image.prompt}
+            </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="shrink-0 gap-1.5"
+              onClick={handleCopy}
+            >
+              <Copy className="size-4" />
+              复制
+            </Button>
+          </div>
           <div className="flex flex-wrap gap-1.5">
             {image.tags.map((tag) => (
               <Badge key={tag} variant="secondary">
@@ -163,10 +201,6 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
               </Badge>
             ))}
           </div>
-          <Button variant="default" className="w-full gap-1.5" onClick={handleCopy}>
-            <Copy className="size-4" />
-            复制提示词
-          </Button>
         </div>
       </DialogContent>
     </Dialog>

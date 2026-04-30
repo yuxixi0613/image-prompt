@@ -1,4 +1,5 @@
 import GalleryHeader from "./_components/gallery-header";
+import GalleryHero from "./_components/gallery-hero";
 import GalleryShell from "./_components/gallery-shell";
 import imagesData from "../data/images.json";
 import { ImageItem } from "./_types/gallery";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <GalleryHeader />
+      <GalleryHero />
       <GalleryShell images={images} />
       <footer className="border-t border-border/60 bg-card">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">

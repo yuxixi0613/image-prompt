@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, X, Tag } from "lucide-react";
+import { Search, X, Tag, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -32,45 +32,57 @@ export default function GalleryFilters({
 
   const allTags = Array.from(new Set(images.flatMap((img) => img.tags)));
 
+  const hasActiveFilters = searchQuery || selectedCategory !== "全部" || selectedTags.length > 0;
+
   return (
     <div className="space-y-5">
-      <div className="relative w-full max-w-xl">
-        <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-          placeholder="搜索提示词..."
-          className="pl-9 pr-9"
-        />
-        {searchQuery && (
-          <button
-            type="button"
-            aria-label="清除搜索"
-            onClick={() => onSearchChange("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-          >
-            <X className="size-4 text-muted-foreground hover:text-foreground" />
-          </button>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <div className="relative flex-1 w-full max-w-xl">
+          <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder="搜索提示词..."
+            className="pl-9 pr-9"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              aria-label="清除搜索"
+              onClick={() => onSearchChange("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+            >
+              <X className="size-4 text-muted-foreground hover:text-foreground" />
+            </button>
+          )}
+        </div>
+
+        {hasActiveFilters && (
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+            <SlidersHorizontal className="size-3.5" />
+            <span>已启用筛选</span>
+          </div>
         )}
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {categories.map((category) => (
-          <Badge
-            key={category}
-            variant={selectedCategory === category ? "default" : "secondary"}
-            className={cn(
-              "cursor-pointer px-3.5 py-1.5 text-sm font-medium transition-colors",
-              selectedCategory === category
-                ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-            )}
-            onClick={() => onCategoryChange(category)}
-          >
-            {category}
-          </Badge>
-        ))}
+      <div className="space-y-3">
+        <div className="flex flex-wrap gap-1.5 p-1 bg-muted/50 rounded-lg w-fit">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => onCategoryChange(category)}
+              className={cn(
+                "px-3.5 py-1.5 text-sm font-medium rounded-md transition-all duration-200",
+                selectedCategory === category
+                  ? "bg-background text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+              )}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </div>
 
       {allTags.length > 0 && (
