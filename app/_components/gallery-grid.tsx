@@ -1,0 +1,21 @@
+import { ImageItem } from "../_types/gallery";
+import GalleryCard from "./gallery-card";
+import GalleryEmpty from "./gallery-empty";
+
+interface GalleryGridProps {
+  images: ImageItem[];
+}
+
+export default function GalleryGrid({ images }: GalleryGridProps) {
+  if (images.length === 0) {
+    return <GalleryEmpty />;
+  }
+
+  return (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {images.map((image) => (
+        <GalleryCard key={image.id} image={image} />
+      ))}
+    </div>
+  );
+}

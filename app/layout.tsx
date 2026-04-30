@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display, Source_Serif_4 } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -18,8 +27,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+    <html
+      lang="zh-CN"
+      className={`${playfair.variable} ${sourceSerif.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col font-sans">
+        {children}
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: "oklch(0.25 0.04 30)",
+              color: "oklch(0.98 0.01 85)",
+              border: "none",
+            },
+          }}
+        />
+      </body>
     </html>
   );
 }
