@@ -45,8 +45,10 @@ export default function GalleryFilters({
         />
         {searchQuery && (
           <button
+            type="button"
+            aria-label="清除搜索"
             onClick={() => onSearchChange("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2"
+            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
           >
             <X className="size-4 text-muted-foreground hover:text-foreground" />
           </button>

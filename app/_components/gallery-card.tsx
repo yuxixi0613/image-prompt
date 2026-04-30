@@ -25,9 +25,10 @@ import { ImageItem } from "../_types/gallery";
 
 interface GalleryCardProps {
   image: ImageItem;
+  priority?: boolean;
 }
 
-export default function GalleryCard({ image }: GalleryCardProps) {
+export default function GalleryCard({ image, priority }: GalleryCardProps) {
   const [imgError, setImgError] = useState(false);
 
   const handleCopy = async () => {
@@ -56,29 +57,31 @@ export default function GalleryCard({ image }: GalleryCardProps) {
     <Dialog>
       <Card className="group overflow-hidden border-border/60 bg-card transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
         <DialogTrigger
+          nativeButton={false}
           render={
-            <div className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden bg-muted">
-              {!imgError ? (
-                <Image
-                  src={image.imageUrl}
-                  alt={image.prompt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                  onError={() => setImgError(true)}
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center gap-2 text-muted-foreground">
-                  <Tag className="size-8" />
-                  <span className="text-sm">图片加载失败</span>
-                </div>
-              )}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/20 group-hover:opacity-100">
-                <Eye className="size-8 text-white drop-shadow-lg" />
-              </div>
-            </div>
+            <div className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden bg-muted" />
           }
-        />
+        >
+          {!imgError ? (
+            <Image
+              src={image.imageUrl}
+              alt={image.prompt}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={priority}
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center gap-2 text-muted-foreground">
+              <Tag className="size-8" />
+              <span className="text-sm">图片加载失败</span>
+            </div>
+          )}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/20 group-hover:opacity-100">
+            <Eye className="size-8 text-white drop-shadow-lg" />
+          </div>
+        </DialogTrigger>
 
         <CardHeader className="pb-2">
           <div className="flex items-center gap-2">
@@ -138,6 +141,7 @@ export default function GalleryCard({ image }: GalleryCardProps) {
               src={image.imageUrl}
               alt={image.prompt}
               fill
+              sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover"
             />
           ) : (

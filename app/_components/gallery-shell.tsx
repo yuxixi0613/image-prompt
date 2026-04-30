@@ -41,6 +41,12 @@ export default function GalleryShell({ images }: GalleryShellProps) {
     );
   };
 
+  const handleClearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("全部");
+    setSelectedTags([]);
+  };
+
   return (
     <main className="flex-1">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -71,7 +77,7 @@ export default function GalleryShell({ images }: GalleryShellProps) {
           />
         </div>
 
-        <GalleryGrid images={filteredImages} />
+        <GalleryGrid images={filteredImages} onClearFilters={handleClearFilters} />
       </div>
     </main>
   );
