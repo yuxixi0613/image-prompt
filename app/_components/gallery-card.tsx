@@ -58,7 +58,7 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
 
   return (
     <Dialog>
-      <Card className="group overflow-hidden border-border/60 bg-card transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+      <Card className="group overflow-hidden border-border/60 bg-card transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 p-0">
         <DialogTrigger
           nativeButton={false}
           render={
@@ -86,7 +86,7 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
           </div>
         </DialogTrigger>
 
-        <CardHeader className="pb-2">
+        <CardHeader className="px-5 pt-4 pb-2">
           <div className="flex items-center gap-2">
             <Badge
               variant="secondary"
@@ -101,7 +101,7 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="pb-3">
+        <CardContent className="px-5 pb-3">
           <div className="relative">
             <p
               className={`text-sm leading-relaxed text-card-foreground transition-all duration-300 ${
@@ -113,7 +113,7 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
             {shouldTruncate && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="mt-1 flex items-center gap-0.5 text-xs text-primary hover:text-primary/80 transition-colors"
+                className="mt-1.5 flex items-center gap-0.5 text-xs text-primary/70 hover:text-primary transition-colors"
               >
                 {isExpanded ? (
                   <>
@@ -131,13 +131,13 @@ export default function GalleryCard({ image, priority }: GalleryCardProps) {
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-3 pt-0">
+        <CardFooter className="flex flex-col gap-3 px-5 pt-3 pb-5">
           <div className="flex flex-wrap gap-1.5">
             {image.tags.map((tag) => (
               <Badge
                 key={tag}
                 variant="outline"
-                className="text-xs text-muted-foreground"
+                className="text-xs text-muted-foreground border-border/40"
               >
                 {tag}
               </Badge>
