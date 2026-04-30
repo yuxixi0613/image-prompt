@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "imageUrl": "https://images.unsplash.com/photo-1686191128892-3b37add4a934?w=800&q=80",
+    "prompt": "A serene Japanese garden in spring, cherry blossoms falling gently into a koi pond, soft morning light filtering through the trees, watercolor painting style",
+    "category": "风景",
+    "tags": ["自然", "日本", "春天", "水彩"],
+    "createdAt": "2024-03-15"
+  },
+  {
+    "id": "2",
+    "imageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    "prompt": "A futuristic cyberpunk cityscape at night, neon lights reflecting on wet streets, flying cars between towering skyscrapers, cinematic lighting, ultra detailed",
+    "category": "科幻",
+    "tags": ["赛博朋克", "城市", "夜景", "未来"],
+    "createdAt": "2024-03-16"
+  },
+  {
+    "id": "3",
+    "imageUrl": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80",
+    "prompt": "An adorable corgi puppy wearing a tiny wizard hat and robe, casting a colorful spell with sparkles, standing in a magical forest, Pixar 3D animation style",
+    "category": "动物",
+    "tags": ["可爱", "柯基", "魔法", "3D"],
+    "createdAt": "2024-03-17"
+  },
+  {
+    "id": "4",
+    "imageUrl": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
+    "prompt": "A cozy reading nook by a large window, raining outside, warm ambient lighting, a cup of tea on the side table, surrounded by bookshelves, oil painting style",
+    "category": "室内",
+    "tags": ["温馨", "阅读", "雨天", "油画"],
+    "createdAt": "2024-03-18"
+  },
+  {
+    "id": "5",
+    "imageUrl": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    "prompt": "A majestic dragon soaring above snow-capped mountains at sunset, scales shimmering in golden light, epic fantasy art, dramatic clouds",
+    "category": "幻想",
+    "tags": ["龙", "山脉", "日落", "史诗"],
+    "createdAt": "2024-03-19"
+  },
+  {
+    "id": "6",
+    "imageUrl": "https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800&q=80",
+    "prompt": "A minimalist modern kitchen with marble countertops, fresh herbs on the windowsill, morning sunlight streaming in, architectural photography style",
+    "category": "室内",
+    "tags": ["现代", "厨房", "极简", "建筑"],
+    "createdAt": "2024-03-20"
+  }
+]
